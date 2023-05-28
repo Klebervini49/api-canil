@@ -52,7 +52,4 @@ server.use(express.static(DirPublic));
 
 server.use(router);
 
-server.listen(port, () => {
-  console.clear();
-  console.log(`Server is running on http://localhost:${port}`);
-});
+server.listen(port);
