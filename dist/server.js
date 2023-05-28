@@ -16,6 +16,10 @@ const server = (0, express_1.default)();
 const port = process.env.PORT || 3000;
 server.use(express_1.default.json());
 server.use((0, cors_1.default)());
+server.use(express_1.default.urlencoded({ extended: true }));
+exports.DirPublic = path_1.default.join(__dirname, "../public");
+server.use(express_1.default.static(exports.DirPublic));
+server.use(routes_1.default);
 const swaggerOptions = {
     swaggerDefinition: {
         openapi: '3.0.0',
@@ -39,7 +43,7 @@ const swaggerOptions = {
             }
         }
     },
-    apis: ['./src/routes/*.js']
+    apis: ['./dist/routes/*.js']
 };
 const swaggerDocs = (0, swagger_jsdoc_1.default)(swaggerOptions);
 server.use('/api/docs', swagger_ui_express_1.default.serve);
@@ -51,12 +55,9 @@ server.get('/api/docs', (req, res) => {
         customCss: '.swagger-ui .topbar { display: none }'
     });
 });
-exports.DirPublic = path_1.default.join(__dirname, "../public");
-server.use(express_1.default.static(exports.DirPublic));
-server.use(routes_1.default);
-// router.get("*", (req, res) => {
-//   res.status(404).sendFile("error.html", {
-//     root: DirPublic
-//   });
-// });
+routes_1.default.get("*", (req, res) => {
+    res.status(404).sendFile("error.html", {
+        root: exports.DirPublic
+    });
+});
 server.listen(port);

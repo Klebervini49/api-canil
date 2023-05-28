@@ -12,6 +12,10 @@ const port = process.env.PORT || 3000;
 
 server.use(express.json());
 server.use(cors());
+server.use(express.urlencoded({ extended: true }));
+export const DirPublic = path.join(__dirname, "../public");
+server.use(express.static(DirPublic));
+server.use(router);
 
 const swaggerOptions = {
   swaggerDefinition: {
@@ -36,12 +40,11 @@ const swaggerOptions = {
       }
     }
   },
-  apis: ['./src/routes/*.js']
+  apis: ['./dist/routes/*.js']
 };
-
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-server.use('/api/docs', swaggerUi.serve);
 
+server.use('/api/docs', swaggerUi.serve);
 server.get('/api/docs', (req, res) => {
   res.status(200).send(swaggerUi.generateHTML(swaggerDocs));
   swaggerUi.setup(swaggerDocs, {
@@ -51,15 +54,10 @@ server.get('/api/docs', (req, res) => {
   });
 });
 
-export const DirPublic = path.join(__dirname, "../public");
-server.use(express.static(DirPublic));
-
-server.use(router);
-
-// router.get("*", (req, res) => {
-//   res.status(404).sendFile("error.html", {
-//     root: DirPublic
-//   });
-// });
+router.get("*", (req, res) => {
+  res.status(404).sendFile("error.html", {
+    root: DirPublic
+  });
+});
 
 server.listen(port);
