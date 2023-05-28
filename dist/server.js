@@ -43,11 +43,14 @@ const swaggerOptions = {
 };
 const swaggerDocs = (0, swagger_jsdoc_1.default)(swaggerOptions);
 server.use('/api/docs', swagger_ui_express_1.default.serve);
-server.get('/api/docs', swagger_ui_express_1.default.setup(swaggerDocs, {
-    explorer: true,
-    customSiteTitle: 'Canil API Documentation',
-    customCss: '.swagger-ui .topbar { display: none }'
-}));
+server.get('/api/docs', (req, res) => {
+    res.status(200).send(swagger_ui_express_1.default.generateHTML(swaggerDocs));
+    swagger_ui_express_1.default.setup(swaggerDocs, {
+        explorer: true,
+        customSiteTitle: 'Canil API Documentation',
+        customCss: '.swagger-ui .topbar { display: none }'
+    });
+});
 exports.DirPublic = path_1.default.join(__dirname, "../public");
 server.use(express_1.default.static(exports.DirPublic));
 server.use(routes_1.default);
