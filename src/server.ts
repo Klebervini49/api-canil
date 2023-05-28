@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from "express";
+import express from "express";
 import path from "path";
 import dotenv from "dotenv";
 import router from "./routes";
@@ -8,6 +8,7 @@ import swaggerJsDoc from 'swagger-jsdoc';
 
 dotenv.config();
 const server = express();
+const port = process.env.PORT || 3000;
 
 server.use(express.json());
 server.use(cors());
@@ -22,39 +23,33 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: 'http://localhost:3000',
+        url: `http://localhost:${port}`,
       },
     ],
+    components: {
+      securitySchemes: {
+        BearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT'
+        }
+      }
+    }
   },
   apis: ['./src/routes/*.ts']
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-
-server.use('/api/docs', swaggerUi.serve, (req: Request, res: Response, next: NextFunction) => {
-  const swaggerDocsModified = JSON.parse(JSON.stringify(swaggerDocs));
-  swaggerDocsModified.components = {
-    securitySchemes: {
-      BearerAuth: {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT'
-      }
-    }
-  };
-  swaggerUi.setup(swaggerDocsModified, {
-    explorer: true,
-    customSiteTitle: 'Canil API Documentation',
-    customCss: '.swagger-ui .topbar { display: none }'
-  })(req, res, next);
-});
-
-const port = process.env.PORT || 3000;
+server.use('/api/docs', swaggerUi.serve);
+server.get('/api/docs', swaggerUi.setup(swaggerDocs, {
+  explorer: true,
+  customSiteTitle: 'Canil API Documentation',
+  customCss: '.swagger-ui .topbar { display: none }'
+}));
 
 export const DirPublic = path.join(__dirname, "../public");
 server.use(express.static(DirPublic));
 
-// Rotas
 server.use(router);
 
 server.listen(port, () => {
