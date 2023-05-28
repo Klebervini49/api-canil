@@ -7,7 +7,8 @@ exports.Rotas = void 0;
 const pet_1 = __importDefault(require("../models/pet"));
 exports.Rotas = {
     Home: (req, res) => res.send({
-        message: "Bem vindo a API do Canil!"
+        message: "Bem vindo a API do Canil!",
+        doc: "/api/docs",
     }),
     HomeAll: (req, res) => res.send(pet_1.default.listarTodos(res)),
     HomeAnimal: (req, res) => res.send(pet_1.default.listarTipo(req.params.animal, res)),
