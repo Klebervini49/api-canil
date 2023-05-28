@@ -1,4 +1,5 @@
-export const CssDocs = `.swagger-ui {
+export const CssDocs = `
+.swagger-ui {
     color:#3b4151;
     font-family:sans-serif/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
 }

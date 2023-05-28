@@ -40,22 +40,27 @@ const swaggerOptions = {
             }
         }
     },
-    apis: [`${DirPublic}/swagger.js`]
+    apis: [`${DirPublic}/swagger.js`],
+    tags: [
+        {
+            name: 'Rotas principais',
+            description: 'Endpoints principais da API'
+        }
+    ]
 };
 const swaggerDocs = (0, swagger_jsdoc_1.default)(swaggerOptions);
-server.use('/api/docs', swagger_ui_express_1.default.serve);
-server.get('/api/docs', swagger_ui_express_1.default.setup(swaggerDocs, {
+server.use('/api/docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerDocs, {
     explorer: true,
     customSiteTitle: 'Canil API Documentation',
     customCss: cssInline_1.CssDocs
 }));
 server.use(express_1.default.static(DirPublic));
 server.use(routes_1.default);
-routes_1.default.get("*", (req, res) => {
+server.get("*", (req, res) => {
     res.status(404).sendFile("error.html", {
         root: DirPublic
     });
 });
 server.listen(port, () => {
-    console.log(`Server is running on  http://localhost:${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 });

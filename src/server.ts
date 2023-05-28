@@ -13,6 +13,7 @@ const port = process.env.PORT || 3000;
 
 server.use(express.json());
 server.use(cors());
+
 const DirPublic = path.join(__dirname, "../public");
 
 const swaggerOptions = {
@@ -38,29 +39,32 @@ const swaggerOptions = {
       }
     }
   },
-  apis: [`${DirPublic}/swagger.js`]
+  apis: [`${DirPublic}/swagger.js`],
+  tags: [
+    {
+      name: 'Rotas principais',
+      description: 'Endpoints principais da API'
+    }
+  ]
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-server.use('/api/docs', swaggerUi.serve);
 
-server.get('/api/docs', swaggerUi.setup(swaggerDocs, {
+server.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs, {
   explorer: true,
   customSiteTitle: 'Canil API Documentation',
   customCss: CssDocs
 }));
 
 server.use(express.static(DirPublic));
-
 server.use(router);
 
-router.get("*", (req, res) => {
+server.get("*", (req, res) => {
   res.status(404).sendFile("error.html", {
     root: DirPublic
   });
 });
 
 server.listen(port, () => {
-  console.log(`Server is running on  http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
-

@@ -3,6 +3,8 @@
  * /api/tipo/:
  *   get:
  *     summary: Obtém todos os animais
+ *     tags: 
+ *       [Rotas principais]
  *     security:
  *       - BearerAuth: []
  *     responses:
@@ -16,6 +18,8 @@
  * /api/tipo/{animal}:
  *   get:
  *     summary: Obtém todos os animais de um tipo específico
+ *     tags: 
+ *       [Rotas principais]
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -35,6 +39,8 @@
  * /api/pesquisa/{pesquisa}:
  *   get:
  *     summary: Pesquisa os animais pelo nome
+ *     tags: 
+ *       [Rotas principais]
  *     security:
  *       - BearerAuth: []
  *     parameters:

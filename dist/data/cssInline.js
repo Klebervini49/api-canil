@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CssDocs = void 0;
-exports.CssDocs = `.swagger-ui {
+exports.CssDocs = `
+.swagger-ui {
     color:#3b4151;
     font-family:sans-serif/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
 }
