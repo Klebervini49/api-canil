@@ -1,0 +1,8 @@
+# Ignorar todos os arquivos em um diretório
+diretorio/
+
+# Ignorar todos os arquivos com uma extensão específica
+*.env
+
+# Ignorar um diretório e seu conteúdo recursivamente
+node_modules
