@@ -42,26 +42,15 @@ const swaggerOptions = {
     apis: ['./src/routes/index.ts']
 };
 const swaggerDocs = (0, swagger_jsdoc_1.default)(swaggerOptions);
-server.use('/api/docs', swaggerUi.serve);
-server.get('/api/docs', (req, res, next) => {
-  const options = {
+server.use('/api/docs', swagger_ui_express_1.default.serve);
+server.get('/api/docs', swagger_ui_express_1.default.setup(swaggerDocs, {
     explorer: true,
     customSiteTitle: 'Canil API Documentation',
-  };
-  const html = swaggerUi.generateHTML(swaggerDocs, options);
-  const modifiedHtml = html.replace(
-    '<link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css" />',
-    '<link rel="stylesheet" type="text/css" href="../public/swagger-ui.css" />'
-  );
-  res.status(200).send(modifiedHtml);
-});
-
+    customCss: path_1.default.join(__dirname, "../public/swagger-ui.css")
+}));
 exports.DirPublic = path_1.default.join(__dirname, "../public");
-
 server.use(express_1.default.static(exports.DirPublic));
-
 server.use(routes_1.default);
-
 routes_1.default.get("*", (req, res) => {
     res.status(404).sendFile("error.html", {
         root: exports.DirPublic
