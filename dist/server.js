@@ -33,7 +33,7 @@ const swaggerOptions = {
         components: {
             securitySchemes: {
                 BearerAuth: {
-                    type: 'https',
+                    type: 'http',
                     scheme: 'bearer',
                     bearerFormat: 'JWT'
                 }
