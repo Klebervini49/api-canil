@@ -54,9 +54,9 @@ server.get('/api/docs', (req, res) => {
 exports.DirPublic = path_1.default.join(__dirname, "../public");
 server.use(express_1.default.static(exports.DirPublic));
 server.use(routes_1.default);
-routes_1.default.get("*", (req, res) => {
-    res.status(404).sendFile("error.html", {
-        root: exports.DirPublic
-    });
-});
+// router.get("*", (req, res) => {
+//   res.status(404).sendFile("error.html", {
+//     root: DirPublic
+//   });
+// });
 server.listen(port);

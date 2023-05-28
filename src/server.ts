@@ -36,7 +36,7 @@ const swaggerOptions = {
       }
     }
   },
-  apis: ['./src/routes/*.ts']
+  apis: ['./src/routes/*.js']
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -56,10 +56,10 @@ server.use(express.static(DirPublic));
 
 server.use(router);
 
-router.get("*", (req, res) => {
-  res.status(404).sendFile("error.html", {
-    root: DirPublic
-  });
-});
+// router.get("*", (req, res) => {
+//   res.status(404).sendFile("error.html", {
+//     root: DirPublic
+//   });
+// });
 
 server.listen(port);
