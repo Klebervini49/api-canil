@@ -4,6 +4,7 @@ const express_1 = require("express");
 const middleware_1 = require("../middleware");
 const Controller_1 = require("../controllers/Controller");
 const router = (0, express_1.Router)();
+router.get("/api/", Controller_1.Rotas.Home);
 router.get("/api/tipo", middleware_1.authenticateToken, Controller_1.Rotas.HomeAll);
 router.get("/api/tipo/:animal", middleware_1.authenticateToken, Controller_1.Rotas.HomeAnimal);
 router.get("/api/pesquisa/:pesquisa", middleware_1.authenticateToken, Controller_1.Rotas.HomeSearch);
