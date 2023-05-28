@@ -4,6 +4,8 @@ import { Rotas } from "../controllers/Controller";
 
 const router = Router();
 
+router.get("/api/", Rotas.Home);
+
 router.get("/api/tipo", authenticateToken, Rotas.HomeAll);
 
 router.get("/api/tipo/:animal", authenticateToken, Rotas.HomeAnimal);
