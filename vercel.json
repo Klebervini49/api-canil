@@ -1,10 +1,10 @@
 {
   "version": 2,
   "builds": [
-    { "src": "/dist/**/*.js", "use": "@vercel/node" }
+    { "src": "API-CANIL/dist/**/*.js", "use": "@vercel/node" },
   ],
   "routes": [
-    { "src": "/api-canil/(.*)", "dest": "/dist/server.js" },
-    { "src": "/api-canil/(.*)", "dest": "/dist/server.js" }
+    { "src": "/api-canil/(.*)", "dest": "API-CANIL/dist/server.js" },
+    { "src": "/(.*)", "dest": "API-CANIL/dist/server.js" }
   ]
 }
