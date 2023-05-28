@@ -27,7 +27,7 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: `http://localhost:${port}`,
+                url: `https://api-canil.vercel.app/`,
             },
         ],
         components: {
@@ -40,7 +40,7 @@ const swaggerOptions = {
             }
         }
     },
-    apis: ['./src/routes/index.ts']
+    apis: ['./src/routes/*.js']
 };
 const swaggerDocs = (0, swagger_jsdoc_1.default)(swaggerOptions);
 server.use('/api/docs', swagger_ui_express_1.default.serve);
