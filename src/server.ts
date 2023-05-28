@@ -5,6 +5,7 @@ import router from "./routes";
 import cors from "cors";
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsDoc from 'swagger-jsdoc';
+import { CssDocs } from "./data/cssInline";
 
 dotenv.config();
 const server = express();
@@ -36,7 +37,7 @@ const swaggerOptions = {
       }
     }
   },
-  apis: ['./src/routes/index.ts']
+  apis: ['./dist/routes/index.ts']
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -45,7 +46,7 @@ server.use('/api/docs', swaggerUi.serve);
 server.get('/api/docs', swaggerUi.setup(swaggerDocs, {
   explorer: true,
   customSiteTitle: 'Canil API Documentation',
-  customCss: path.join(__dirname, "../public/swagger-ui.css")
+  customCss: CssDocs
 }));
 
 export const DirPublic = path.join(__dirname, "../public");

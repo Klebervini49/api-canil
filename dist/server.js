@@ -11,6 +11,7 @@ const routes_1 = __importDefault(require("./routes"));
 const cors_1 = __importDefault(require("cors"));
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swagger_jsdoc_1 = __importDefault(require("swagger-jsdoc"));
+const cssInline_1 = require("./data/cssInline");
 dotenv_1.default.config();
 const server = (0, express_1.default)();
 const port = process.env.PORT || 3000;
@@ -46,7 +47,7 @@ server.use('/api/docs', swagger_ui_express_1.default.serve);
 server.get('/api/docs', swagger_ui_express_1.default.setup(swaggerDocs, {
     explorer: true,
     customSiteTitle: 'Canil API Documentation',
-    customCss: path_1.default.join(__dirname, "../public/swagger-ui.css")
+    customCss: cssInline_1.CssDocs
 }));
 exports.DirPublic = path_1.default.join(__dirname, "../public");
 server.use(express_1.default.static(exports.DirPublic));
