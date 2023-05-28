@@ -6,7 +6,7 @@
     }
   ],
   "routes": [
-    { "handle": "filesystem" },
+    { "src": "/public/(.*)", "dest": "/public/$1" },
     { "src": "/(.*)", "dest": "/dist/server.js" }
   ],
   "version": 2

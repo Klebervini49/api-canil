@@ -67,5 +67,4 @@ const router = (0, express_1.Router)();
 router.get("/api/tipo", middleware_1.authenticateToken, Controller_1.Rotas.HomeAll);
 router.get("/api/tipo/:animal", middleware_1.authenticateToken, Controller_1.Rotas.HomeAnimal);
 router.get("/api/pesquisa/:pesquisa", middleware_1.authenticateToken, Controller_1.Rotas.HomeSearch);
-router.get("*", Controller_1.Rotas.NotFound);
 exports.default = router;

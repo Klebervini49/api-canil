@@ -71,6 +71,4 @@ router.get("/api/tipo/:animal", authenticateToken, Rotas.HomeAnimal);
 
 router.get("/api/pesquisa/:pesquisa", authenticateToken, Rotas.HomeSearch);
 
-router.get("*", Rotas.NotFound);
-
 export default router;

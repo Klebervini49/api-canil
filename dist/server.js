@@ -51,4 +51,9 @@ server.get('/api/docs', swagger_ui_express_1.default.setup(swaggerDocs, {
 exports.DirPublic = path_1.default.join(__dirname, "../public");
 server.use(express_1.default.static(exports.DirPublic));
 server.use(routes_1.default);
+routes_1.default.get("*", (req, res) => {
+    res.status(404).sendFile("error.html", {
+        root: exports.DirPublic
+    });
+});
 server.listen(port);

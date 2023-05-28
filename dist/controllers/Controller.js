@@ -9,5 +9,4 @@ exports.Rotas = {
     HomeAll: (req, res) => res.send(pet_1.default.listarTodos(res)),
     HomeAnimal: (req, res) => res.send(pet_1.default.listarTipo(req.params.animal, res)),
     HomeSearch: (req, res) => res.send(pet_1.default.listarRaca(req.params.pesquisa, res)),
-    NotFound: (req, res) => res.send(pet_1.default.notFound(res))
 };

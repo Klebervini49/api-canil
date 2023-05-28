@@ -1,6 +1,5 @@
 import { Response } from "express";
 import { listaAnimais } from "../data/";
-import { DirPublic } from "../server";
 
 const PetController = {
   listarTodos: (res: Response) => {
@@ -50,11 +49,6 @@ const PetController = {
     return ({
       message: pesquisa,
       animais: listaAnimal
-    });
-  },
-  notFound: (res: Response) => {
-    res.status(404).sendFile("error.html", {
-      root: DirPublic
     });
   }
 };

@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const data_1 = require("../data/");
-const server_1 = require("../server");
 const PetController = {
     listarTodos: (res) => {
         if (data_1.listaAnimais.length === 0) {
@@ -46,11 +45,6 @@ const PetController = {
         return ({
             message: pesquisa,
             animais: listaAnimal
-        });
-    },
-    notFound: (res) => {
-        res.status(404).sendFile("error.html", {
-            root: server_1.DirPublic
         });
     }
 };

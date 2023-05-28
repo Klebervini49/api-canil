@@ -52,4 +52,10 @@ server.use(express.static(DirPublic));
 
 server.use(router);
 
+router.get("*", (req, res) => {
+  res.status(404).sendFile("error.html", {
+    root: DirPublic
+  });
+});
+
 server.listen(port);
