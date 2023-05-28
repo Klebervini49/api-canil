@@ -13,6 +13,7 @@ const port = process.env.PORT || 3000;
 
 server.use(express.json());
 server.use(cors());
+const DirPublic = path.join(__dirname, "../public");
 
 const swaggerOptions = {
   swaggerDefinition: {
@@ -30,14 +31,14 @@ const swaggerOptions = {
     components: {
       securitySchemes: {
         BearerAuth: {
-          type: 'http',
+          type: 'https',
           scheme: 'bearer',
           bearerFormat: 'JWT'
         }
       }
     }
   },
-  apis: ['./src/routes/swagger.ts']
+  apis: [`${DirPublic}/swagger.js`]
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -49,7 +50,6 @@ server.get('/api/docs', swaggerUi.setup(swaggerDocs, {
   customCss: CssDocs
 }));
 
-export const DirPublic = path.join(__dirname, "../public");
 server.use(express.static(DirPublic));
 
 server.use(router);

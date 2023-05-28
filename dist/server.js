@@ -3,7 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DirPublic = void 0;
 const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const dotenv_1 = __importDefault(require("dotenv"));
@@ -17,6 +16,7 @@ const server = (0, express_1.default)();
 const port = process.env.PORT || 3000;
 server.use(express_1.default.json());
 server.use((0, cors_1.default)());
+const DirPublic = path_1.default.join(__dirname, "../public");
 const swaggerOptions = {
     swaggerDefinition: {
         openapi: '3.0.0',
@@ -33,14 +33,14 @@ const swaggerOptions = {
         components: {
             securitySchemes: {
                 BearerAuth: {
-                    type: 'http',
+                    type: 'https',
                     scheme: 'bearer',
                     bearerFormat: 'JWT'
                 }
             }
         }
     },
-    apis: ['./src/routes/swagger.ts']
+    apis: [`${DirPublic}/swagger.js`]
 };
 const swaggerDocs = (0, swagger_jsdoc_1.default)(swaggerOptions);
 server.use('/api/docs', swagger_ui_express_1.default.serve);
@@ -49,12 +49,11 @@ server.get('/api/docs', swagger_ui_express_1.default.setup(swaggerDocs, {
     customSiteTitle: 'Canil API Documentation',
     customCss: cssInline_1.CssDocs
 }));
-exports.DirPublic = path_1.default.join(__dirname, "../public");
-server.use(express_1.default.static(exports.DirPublic));
+server.use(express_1.default.static(DirPublic));
 server.use(routes_1.default);
 routes_1.default.get("*", (req, res) => {
     res.status(404).sendFile("error.html", {
-        root: exports.DirPublic
+        root: DirPublic
     });
 });
 server.listen(port, () => {
