@@ -1,14 +1,13 @@
 {
-  "version": 2,
-  "routes": [
-    { "src": "/api-canil/public/(.*)", "dest": "/public/$1" },
-    { "src": "/api-canil/(.*)", "dest": "/dist/server.js" }
-  ],
-  
   "builds": [
     {
       "src": "dist/server.js",
       "use": "@vercel/node"
     }
-  ]
+  ],
+  "routes": [
+    { "src": "/public/(.*)", "dest": "/public/$1" },
+    { "src": "/(.*)", "dest": "/dist/server.js" }
+  ],
+  "version": 2
 }
