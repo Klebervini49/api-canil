@@ -51,7 +51,6 @@ server.get('/api/docs', (req, res) => {
   });
 });
 
-
 export const DirPublic = path.join(__dirname, "../public");
 server.use(express.static(DirPublic));
 
