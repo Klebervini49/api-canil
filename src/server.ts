@@ -24,7 +24,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: `https://api-canil.vercel.app/`,
+        url: `https://api-canil.vercel.app/`
       },
     ],
     components: {
@@ -37,7 +37,7 @@ const swaggerOptions = {
       }
     }
   },
-  apis: ['./src/routes/*.ts']
+  apis: ['./src/routes/swagger.ts']
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -60,4 +60,7 @@ router.get("*", (req, res) => {
   });
 });
 
-server.listen(port);
+server.listen(port, () => {
+  console.log(`Server is running on  http://localhost:${port}`);
+});
+
