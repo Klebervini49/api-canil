@@ -7,10 +7,8 @@
     "node": "18.x"
   },
   "scripts": {
-    "start": "tsc && node dist/server.js",
     "build": "tsc",
-    "prestart": "npm run build",
-    "postinstall": "npm run build"
+    "start": "node dist/server.js"
   },
   "author": "Kleberson Vinicius <klebervini0@gmail.com>",
   "license": "MIT",
