@@ -46,7 +46,7 @@ server.use('/api/docs', swagger_ui_express_1.default.serve);
 server.get('/api/docs', swagger_ui_express_1.default.setup(swaggerDocs, {
     explorer: true,
     customSiteTitle: 'Canil API Documentation',
-    customCss: path_1.default.join(__dirname, "../public/swagger-ui.css")
+    customCss: path_1.default.join("../public/swagger-ui.css")
 }));
 exports.DirPublic = path_1.default.join(__dirname, "../public");
 server.use(express_1.default.static(exports.DirPublic));
