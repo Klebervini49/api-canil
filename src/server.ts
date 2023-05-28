@@ -36,7 +36,7 @@ const swaggerOptions = {
       }
     }
   },
-  apis: ['./src/routes/*.ts']
+  apis: ['./src/routes/index.ts']
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -45,7 +45,7 @@ server.use('/api/docs', swaggerUi.serve);
 server.get('/api/docs', swaggerUi.setup(swaggerDocs, {
   explorer: true,
   customSiteTitle: 'Canil API Documentation',
-  customCss: '.swagger-ui .topbar { display: none }'
+  customCss: path.join(__dirname, "../public/swagger-ui.css")
 }));
 
 export const DirPublic = path.join(__dirname, "../public");
