@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import Pet from "../models/pet";
 import { Animal } from "../models/Animais";
 
 export const Rotas = {
