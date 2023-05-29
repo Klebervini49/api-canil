@@ -26,7 +26,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: `https://api-canil.vercel.app/`
+        url: `http://api-canil.vercel.app/`
       },
     ],
     components: {
