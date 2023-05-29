@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
-    "start": "nodemon ./src/server.ts",
+    "start": "nodemon ./dist/server.js",
     "dev": "nodemon ./src/server.ts"
   },
   "author": "Kleberson Vinicius <klebervini0@gmail.com>",
