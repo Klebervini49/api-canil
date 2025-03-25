@@ -34,11 +34,6 @@ Consulte a documentação da API para obter mais detalhes sobre os parâmetros e
 
 A documentação da API pode ser encontrada em `/api/docs`, onde você encontrará uma interface interativa para explorar os endpoints e suas descrições.
 
-## Autor
-
-- Nome: Kleberson Vinicius
-- Email: klebervini0@gmail.com
-
 ## Licença
 
 Este projeto está licenciado sob a Licença MIT. Consulte o arquivo LICENSE para obter mais informações.
